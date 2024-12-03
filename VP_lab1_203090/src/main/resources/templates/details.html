@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+</head>
+<body>
+<div>
+    <p><b>Event Name: </b> <span th:text="${event.getName()}"></span></p>
+    <p><b>Event Description: </b> <span th:text="${event.getDescription()}"></span></p>
+    <p><b>Event Rating: </b> <span th:text="${event.getPopularityScore()}"></span></p>
+    <p><b>Event Location:</b> <span th:text="${event.getLocation().name}"></span></p>
+</div>
+<h3>Bookings for this event</h3>
+<ul>
+    <li th:each="eventBooking : ${eventBookings}">
+        <p><b>Attendee Name: </b> <span th:text="${eventBooking.getAttendeeName()}"></span></p>
+        <p><b>Client IP Address: </b> <span th:text="${eventBooking.getAttendeeAddress()}"></span></p>
+        <p><b>Number of tickets: </b> <span th:text="${eventBooking.getNumberOfTickets()}"></span></p>
+        <br>
+        <br>
+    </li>
+</ul>
+</body>
+</html>

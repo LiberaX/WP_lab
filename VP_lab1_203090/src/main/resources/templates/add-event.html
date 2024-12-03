@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${event.id == null ? 'Add Event' : 'Edit Event'}">Event Form</title>
+</head>
+<body>
+<h2 th:text="${event.id == null ? 'Add New Event' : 'Edit Event'}"></h2>
+
+<form th:action="${event.id == null ? '/events/add' : '/events/edit/' + event.id}" th:object="${event}" method="post">
+    <div>
+        <label for="name">Name</label>
+        <input id="name" type="text" th:field="*{name}" required/>
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <input id="description" type="text" th:field="*{description}" required/>
+    </div>
+    <div>
+        <label for="popularityScore">Popularity Score</label>
+        <input id="popularityScore" type="number" th:field="*{popularityScore}" step="0.1" required/>
+    </div>
+    <div>
+        <label for="location">Location</label>
+        <select id="location" name="locationId" required>
+            <option th:each="l : ${locations}" th:value="${l.id}" th:text="${l.name}"
+                    th:selected="${event.location != null && l.id == event.location.id}"></option>
+        </select>
+    </div>
+    <button type="submit" th:text="${event.id == null ? 'Save' : 'Update'}"></button>
+</form>
+</body>
+</html>
